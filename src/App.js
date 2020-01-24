@@ -1,11 +1,20 @@
 import React from 'react';
-import './App.css';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Landing from './components/Landing/Landing';
+import Results from './components/Results/Results';
 
 function App() {
   return (
-    <div>
-      <h1>Welcome to Kitties Mash</h1>
-    </div>
+    <Router>
+        <Switch>
+          <Route exact path="/">
+            <Landing />
+          </Route>
+          <Route path="/results">
+            <Results />
+          </Route>
+        </Switch>
+    </Router>
   );
 }
 

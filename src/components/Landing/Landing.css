@@ -1,0 +1,24 @@
+.landing {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.landing__title {
+    font-family: 'Ultra', serif;
+    font-size: 38px;
+    color: #36213E;
+}
+
+.landing__error {
+    font-family: 'Ultra', serif;
+    font-size: 20px;
+    color: darkred;
+}
+
+.landing__mash {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
