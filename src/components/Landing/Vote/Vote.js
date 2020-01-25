@@ -15,11 +15,10 @@ export default class Vote extends React.Component {
     }
     
     handleKittyVote = () => {
-        console.log('A voté !!');
+        this.state.addKittyVote(this.state.kitty.id)
     }
 
     render() {
-        console.log('VOTE props', this.props);
         console.log('VOTE states', this.state);
 
         if (this.state.isLoading) {
@@ -29,6 +28,13 @@ export default class Vote extends React.Component {
         return (
         <div className="kitty">
             <img className="kitty__img" src={this.state.kitty.url} alt={this.state.kitty.id}/>
+            <div className="kitty__share">
+                <span className="kitty__share-text">Share this kitty on</span>
+                {/* TODO : Add sharing links to Social Media platforms */}
+                <img className="kitty__some" src="/assets/facebook.png" alt="Facebook logo"/>
+                <img className="kitty__some" src="/assets/twitter.png" alt="Twitter logo"/>
+                <img className="kitty__some" src="/assets/whatsapp.png" alt="Whatsapp logo"/>
+            </div>
             <button className="kitty__btn" onClick={() => this.handleKittyVote()}>Vote!</button>
         </div>
         );

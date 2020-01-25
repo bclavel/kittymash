@@ -12,6 +12,27 @@
     border-radius: 20px;
 }
 
+.kitty__share {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.kitty__some {
+    width: 25px;
+    margin: 0 3px;
+    cursor: pointer;
+}
+
+.kitty__share-text {
+    font-family: 'Tahoma, serif';
+    font-size: 16px;
+    color: #36213E;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
 .kitty__btn {
     display: block;
     float: right;
