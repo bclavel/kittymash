@@ -1,69 +1,59 @@
-import React, { useState, useEffect } from 'react';
-import './Landing.css';
-import Header from '../Header/Header';
-import Vote from './Vote/Vote';
+import React from 'react';
 import { Link } from "react-router-dom";
+import './Landing.css';
+import Vote from './Vote/Vote';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
-function Landing() {
-    const [hasError, setErrors] = useState(false);
-    const [kitties, setKitties] = useState([]);
-    const [kittyOne, setKittyOne] = useState({});
-    const [kittyTwo, setKittyTwo] = useState({});
+export default class Landing extends React.Component {
 
-    useEffect(() => {
-        fetchKitties()
-    }, []);
-
-    async function fetchKitties() {
-        const res = await fetch("http://localhost:3000/assets/cats.json")
-        const data = await res.json();
-        setKitties(data.images)
-        // res
-        //   .json()
-        //   .then(res => setKitties(res.images))
-        //   .catch(err => setErrors(err))
-
-        //   setKittyOne(kitties[Math.floor(Math.random() * 100)])
-        //   setKittyTwo(kitties[Math.floor(Math.random() * 100)])
-        
+	state = {
+        kitties: [],
+        kittyOne: {url: null, id: null},
+        kittyTwo: {url: null, id: null},
+        hasError : false,
+        isLoading: false
     }
 
-    // useEffect(() => {
-    //     randmonKitties()
-    // }, [kitties]);
+    componentDidMount() {
+        this.setState({ isLoading: true });
 
-    // const randmonKitties = () => {
-    //     const randomNum1 = Math.floor(Math.random() * 100)
-    //     const randomNum2 = Math.floor(Math.random() * 100)
-    //     setKittyOne(kitties[randomNum1])
-    //     setKittyTwo(kitties[randomNum2])
-    // }
+        fetch('http://localhost:3000/assets/cats.json')
+        .then(response => {
+            if (response.ok) {
+              return response.json()
+            } else {
+              throw new Error('There has been an error fetching kitty data')
+            }
+          })
+          .then(data => { 
+                // TODO : 
+                // > s'assurer que kittyOne est toujours différent de kittyTwo
+                // > faire en sorte qu'un chat déjà voté ne se représente jamais                
+              let kittyOne = data.images[Math.floor(Math.random() * 100)]
+              let kittyTwo = data.images[Math.floor(Math.random() * 100)]
+              this.setState({ kitties: data.images, kittyOne, kittyTwo, isLoading: false })
+            })
+          .then(data => this.setState({ kitties: data.images, isLoading: false }))
+          .catch(err => this.setState({ hasError : err}))
+      }
 
-    // const randomKitties = () => {
-    //     const randomNum1 = Math.floor(Math.random() * 100)
-    //     setKittyOne(kitties[randomNum1])
+    render() {
+    console.log('LANDING states', this.state);
 
-    //     do {
-    //         const randomNum2 = Math.floor(Math.random() * 100)
-    //         setKittyTwo(kitties[randomNum2])
-    //     } while (kittyOne !== kittyTwo)
-    // }
-
-    //   console.log('kittyOne & Two data >>', kittyOne, kittyTwo);
-      console.log("kitties", kitties);
-
-  return (
-    <div>
-        <Header />
-        <h1 className="landing__title">Vote for your favorite kitty</h1>
-        {hasError ? <span className="landing__error">There has been an error fetching kitty data</span> : null}
-        <div className="landing__mash">
-            <Vote kitties={kitties} />
-            <Vote kitties={kitties} />
+        return (
+        <div className="landing">
+            <Header />
+            <h1 className="landing__title">Vote for your favorite kitty</h1>
+            {/* {this.state.hasError ? <span className="landing__error">There has been an error fetching kitty data</span> : null} */}
+            <div className="landing__mash">
+                <Vote kitty={this.state.kittyOne} isLoading={this.state.isLoading} />
+                <Vote kitty={this.state.kittyTwo} isLoading={this.state.isLoading} />
+            </div>
+            <button className="landing__btn"><Link to="/results">View the cutest kittes</Link></button>
+            <p className="landing__voters">113 990 votes</p>
+            <Footer />
         </div>
-        <Link to="/results">Results</Link>
-    </div>
-  );
+        );
+    }
 }
-
-export default Landing;

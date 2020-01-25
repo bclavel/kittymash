@@ -1,31 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './Vote.css';
 
-function Vote(props) {
-    console.log('VOTE props', props);
+export default class Vote extends React.Component {
 
-    var tonchat = props.kitties[Math.floor(Math.random() * 100)]
+	state = {
+        ...this.props,
+    }
 
-    console.log('ton chat', tonchat);
+    UNSAFE_componentWillReceiveProps(nextProps) {
+		this.setState({
+            kitty: nextProps.kitty,
+            isLoading: nextProps.isLoading
+		})
+    }
     
+    handleKittyVote = () => {
+        console.log('A voté !!');
+    }
 
-    // const [kitt, setKitty] = useState({})
+    render() {
+        console.log('VOTE props', this.props);
+        console.log('VOTE states', this.state);
 
-    // useEffect(() => {
-    //     setKitty(props.kitties[Math.floor(Math.random() * 100)])
-    // }, [])
+        if (this.state.isLoading) {
+            return <p>Loading ...</p>;
+        }
 
-    // console.log('VOTE kitty', kitty);
-
-    const baseUrl = 'http://25.media.tumblr.com/tumblr_m4bgd9OXmw1qioo2oo1_500.jpg'
-
-    
-  return (
-    <div>
-        <h2>Cat</h2>
-        <img src={tonchat} />
-    </div>
-  );
+        return (
+        <div className="kitty">
+            <img className="kitty__img" src={this.state.kitty.url} alt={this.state.kitty.id}/>
+            <button className="kitty__btn" onClick={() => this.handleKittyVote()}>Vote!</button>
+        </div>
+        );
+    }
 }
-
-export default Vote;

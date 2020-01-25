@@ -1,0 +1,28 @@
+.kitty {
+    margin: 10px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.kitty__img {
+    max-width: 500px;
+    max-height: 300px;
+    border-radius: 20px;
+}
+
+.kitty__btn {
+    display: block;
+    float: right;
+    background-color: #36213E;
+    color: #CCC9E7;
+    padding: 10px 30px;
+    margin: 20px 0;
+    text-decoration: none;
+    cursor: pointer;
+    border: 0;
+    border-radius: 5px;
+    font-family: 'Ultra', serif;
+    font-size: 24px;
+}
