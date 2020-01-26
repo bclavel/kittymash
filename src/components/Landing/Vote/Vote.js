@@ -19,23 +19,23 @@ export default class Vote extends React.Component {
     }
 
     render() {
-        console.log('VOTE states', this.state);
+        // console.log('VOTE states', this.state);
 
         if (this.state.isLoading) {
             return <p>Loading ...</p>;
         }
 
         return (
-        <div className="kitty">
-            <img className="kitty__img" src={this.state.kitty.url} alt={this.state.kitty.id}/>
-            <div className="kitty__share">
-                <span className="kitty__share-text">Share this kitty on</span>
+        <div className="vote">
+            <img className="vote__img" src={this.state.kitty.url} alt={this.state.kitty.id}/>
+            <div className="vote__share">
+                <span className="vote__share-text">Share this kitty on</span>
                 {/* TODO : Add sharing links to Social Media platforms */}
-                <img className="kitty__some" src="/assets/facebook.png" alt="Facebook logo"/>
-                <img className="kitty__some" src="/assets/twitter.png" alt="Twitter logo"/>
-                <img className="kitty__some" src="/assets/whatsapp.png" alt="Whatsapp logo"/>
+                <img className="vote__some" src="/assets/facebook.png" alt="Facebook logo"/>
+                <img className="vote__some" src="/assets/twitter.png" alt="Twitter logo"/>
+                <img className="vote__some" src="/assets/whatsapp.png" alt="Whatsapp logo"/>
             </div>
-            <button className="kitty__btn" onClick={() => this.handleKittyVote()}>Vote!</button>
+            <button className="vote__btn" onClick={() => this.handleKittyVote()}>Vote!</button>
         </div>
         );
     }
