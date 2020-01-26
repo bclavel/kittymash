@@ -17,7 +17,7 @@ export default class App extends React.Component {
   componentDidMount() {
     this.setState({ isLoading: true });
 
-    fetch('http://localhost:3000/assets/cats.json')
+    fetch('https://kittymash.herokuapp.com/assets/cats.json')
     .then(response => {
         if (response.ok) {
           return response.json()
