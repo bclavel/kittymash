@@ -19,8 +19,6 @@ export default class Vote extends React.Component {
     }
 
     render() {
-        // console.log('VOTE states', this.state);
-
         if (this.state.isLoading) {
             return <p>Loading ...</p>;
         }

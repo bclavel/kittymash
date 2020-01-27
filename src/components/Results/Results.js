@@ -17,6 +17,7 @@ export default class Results extends React.Component {
         })
     }
 
+    // Fonction to sort kitties by number of votes
     sortKitties = (a, b) => {
       if ( a.votes > b.votes ){
         return -1;
@@ -32,8 +33,6 @@ export default class Results extends React.Component {
     }
 
     render() {
-    console.log('RESULTS states', this.state);
-
         return (
         <div className="results">
             <Header />

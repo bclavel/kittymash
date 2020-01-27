@@ -23,8 +23,6 @@ export default class Landing extends React.Component {
     }
 
     render() {
-    console.log('LANDING states', this.state);
-
         return (
         <div className="landing">
             <Header />

@@ -15,8 +15,7 @@ export default class Vote extends React.Component {
     }
 
     render() {
-        // console.log('KITTY states', this.state);
-
+        // Generates the ratio between votes and views 
         let voteRatio = Math.round((this.state.kitty.votes/this.state.kitty.views)*100) || 0
 
         return (

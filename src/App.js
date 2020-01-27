@@ -11,7 +11,7 @@ export default class App extends React.Component {
     kittyTwo: {url: null, id: null, votes: 0},
     hasError : false,
     isLoading: false,
-    totalVotes : 119301
+    totalVotes : 0
   }
 
   componentDidMount() {
